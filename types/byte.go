@@ -1,7 +1,7 @@
 package types
 
 import (
-	"database/sql/driver"
+	"go.knocknote.io/octillery/database/sql/driver"
 	"encoding/json"
 	"errors"
 )

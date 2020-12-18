@@ -21,8 +21,8 @@ package types
 
 import (
 	"bytes"
-	"database/sql"
-	"database/sql/driver"
+	"go.knocknote.io/octillery/database/sql"
+	"go.knocknote.io/octillery/database/sql/driver"
 	"encoding/hex"
 	"errors"
 	"fmt"

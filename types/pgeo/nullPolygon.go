@@ -1,7 +1,7 @@
 package pgeo
 
 import (
-	"database/sql/driver"
+	"go.knocknote.io/octillery/database/sql/driver"
 )
 
 // NullPolygon allows polygon to be null

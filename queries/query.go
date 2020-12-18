@@ -2,7 +2,7 @@ package queries
 
 import (
 	"context"
-	"database/sql"
+	"go.knocknote.io/octillery/database/sql"
 	"fmt"
 
 	"github.com/volatiletech/sqlboiler/v4/boil"

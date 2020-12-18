@@ -1,7 +1,7 @@
 package pgeo
 
 import (
-	"database/sql/driver"
+	"go.knocknote.io/octillery/database/sql/driver"
 )
 
 // Point is the fundamental two-dimensional building block for geometric types.

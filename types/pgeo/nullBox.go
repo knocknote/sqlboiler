@@ -1,7 +1,7 @@
 package pgeo
 
 import (
-	"database/sql/driver"
+	"go.knocknote.io/octillery/database/sql/driver"
 )
 
 // NullBox allows a box to be null

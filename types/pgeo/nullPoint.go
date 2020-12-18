@@ -1,7 +1,7 @@
 package pgeo
 
 import (
-	"database/sql/driver"
+	"go.knocknote.io/octillery/database/sql/driver"
 )
 
 // NullPoint allows point to be null

@@ -3,8 +3,8 @@ package queries
 import (
 	"bytes"
 	"context"
-	"database/sql"
-	"database/sql/driver"
+	"go.knocknote.io/octillery/database/sql"
+	"go.knocknote.io/octillery/database/sql/driver"
 	"fmt"
 	"reflect"
 	"strings"

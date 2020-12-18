@@ -1,7 +1,7 @@
 package pgeo
 
 import (
-	"database/sql/driver"
+	"go.knocknote.io/octillery/database/sql/driver"
 )
 
 // NullLseg allows line segment to be null

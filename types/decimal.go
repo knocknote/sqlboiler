@@ -1,8 +1,8 @@
 package types
 
 import (
-	"database/sql"
-	"database/sql/driver"
+	"go.knocknote.io/octillery/database/sql"
+	"go.knocknote.io/octillery/database/sql/driver"
 	"errors"
 	"fmt"
 

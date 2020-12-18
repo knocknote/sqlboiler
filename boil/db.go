@@ -2,7 +2,7 @@ package boil
 
 import (
 	"context"
-	"database/sql"
+	"go.knocknote.io/octillery/database/sql"
 )
 
 // Executor can perform SQL queries.

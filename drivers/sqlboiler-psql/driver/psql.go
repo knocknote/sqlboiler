@@ -4,7 +4,7 @@
 package driver
 
 import (
-	"database/sql"
+	"go.knocknote.io/octillery/database/sql"
 	"encoding/base64"
 	"fmt"
 	"os"
