@@ -1,7 +1,7 @@
 package driver
 
 import (
-	"go.knocknote.io/octillery/database/sql"
+	"database/sql"
 	"encoding/base64"
 	"fmt"
 	"strconv"
