@@ -6,10 +6,10 @@
 		{{if not .NoContext -}}
 	if !boil.TimestampsAreSkipped(ctx) {
 		{{end -}}
-		requestTime := ctx.Value("request_time").(*time.Time)
+		requestTime := ctx.Value("request_time")
         var currTime time.Time
         if requestTime != nil {
-            currTime = *requestTime
+            currTime = *requestTime.(*time.Time)
         } else {
             currTime = time.Now().In(boil.GetLocation())
         }
@@ -52,10 +52,10 @@
 		{{if not .NoContext -}}
 	if !boil.TimestampsAreSkipped(ctx) {
 		{{end -}}
-		requestTime := ctx.Value("request_time").(*time.Time)
+		requestTime := ctx.Value("request_time")
         var currTime time.Time
         if requestTime != nil {
-            currTime = *requestTime
+            currTime = *requestTime.(*time.Time)
         } else {
             currTime = time.Now().In(boil.GetLocation())
         }
@@ -83,10 +83,10 @@
 		{{if not .NoContext -}}
 	if !boil.TimestampsAreSkipped(ctx) {
 		{{end -}}
-	    requestTime := ctx.Value("request_time").(*time.Time)
+	    requestTime := ctx.Value("request_time")
         var currTime time.Time
         if requestTime != nil {
-            currTime = *requestTime
+            currTime = *requestTime.(*time.Time)
         } else {
             currTime = time.Now().In(boil.GetLocation())
         }

@@ -67,10 +67,10 @@ func (o *{{$alias.UpSingular}}) Delete({{if .NoContext}}exec boil.Executor{{else
 		args = queries.ValuesFromMapping(reflect.Indirect(reflect.ValueOf(o)), {{$alias.DownSingular}}PrimaryKeyMapping)
 		sql = "DELETE FROM {{$schemaTable}} WHERE {{if .Dialect.UseIndexPlaceholders}}{{whereClause .LQ .RQ 1 .Table.PKey.Columns}}{{else}}{{whereClause .LQ .RQ 0 .Table.PKey.Columns}}{{end}}"
 	} else {
-		requestTime := ctx.Value("request_time").(*time.Time)
+		requestTime := ctx.Value("request_time")
         var currTime time.Time
         if requestTime != nil {
-            currTime = *requestTime
+            currTime = *requestTime.(*time.Time)
         } else {
             currTime = time.Now().In(boil.GetLocation())
         }
@@ -169,10 +169,10 @@ func (q {{$alias.DownSingular}}Query) DeleteAll({{if .NoContext}}exec boil.Execu
 	if hardDelete {
 		queries.SetDelete(q.Query)
 	} else {
-		requestTime := ctx.Value("request_time").(*time.Time)
+		requestTime := ctx.Value("request_time")
         var currTime time.Time
         if requestTime != nil {
-            currTime = *requestTime
+            currTime = *requestTime.(*time.Time)
         } else {
             currTime = time.Now().In(boil.GetLocation())
         }
@@ -277,10 +277,10 @@ func (o {{$alias.UpSingular}}Slice) DeleteAll({{if .NoContext}}exec boil.Executo
 		sql = "DELETE FROM {{$schemaTable}} WHERE " +
 			strmangle.WhereClauseRepeated(string(dialect.LQ), string(dialect.RQ), {{if .Dialect.UseIndexPlaceholders}}1{{else}}0{{end}}, {{$alias.DownSingular}}PrimaryKeyColumns, len(o))
 	} else {
-		requestTime := ctx.Value("request_time").(*time.Time)
+		requestTime := ctx.Value("request_time")
         var currTime time.Time
         if requestTime != nil {
-            currTime = *requestTime
+            currTime = *requestTime.(*time.Time)
         } else {
             currTime = time.Now().In(boil.GetLocation())
         }
