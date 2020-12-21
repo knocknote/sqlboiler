@@ -6,7 +6,13 @@
 		{{if not .NoContext -}}
 	if !boil.TimestampsAreSkipped(ctx) {
 		{{end -}}
-		currTime := time.Now().In(boil.GetLocation())
+		requestTime := ctx.Value("request_time").(*time.Time)
+        var currTime time.Time
+        if requestTime != nil {
+            currTime = *requestTime
+        } else {
+            currTime = time.Now().In(boil.GetLocation())
+        }
 		{{range $ind, $col := .Table.Columns}}
 		    {{- $colAlias := $alias.Column $col.Name -}}
 			{{- if eq $col.Name "created_at" -}}
@@ -46,7 +52,13 @@
 		{{if not .NoContext -}}
 	if !boil.TimestampsAreSkipped(ctx) {
 		{{end -}}
-		currTime := time.Now().In(boil.GetLocation())
+		requestTime := ctx.Value("request_time").(*time.Time)
+        var currTime time.Time
+        if requestTime != nil {
+            currTime = *requestTime
+        } else {
+            currTime = time.Now().In(boil.GetLocation())
+        }
 		{{range $ind, $col := .Table.Columns}}
 	        {{- $colAlias := $alias.Column $col.Name -}}
 			{{- if eq $col.Name "updated_at" -}}
@@ -71,7 +83,13 @@
 		{{if not .NoContext -}}
 	if !boil.TimestampsAreSkipped(ctx) {
 		{{end -}}
-	currTime := time.Now().In(boil.GetLocation())
+	    requestTime := ctx.Value("request_time").(*time.Time)
+        var currTime time.Time
+        if requestTime != nil {
+            currTime = *requestTime
+        } else {
+            currTime = time.Now().In(boil.GetLocation())
+        }
 		{{range $ind, $col := .Table.Columns}}
 		    {{- $colAlias := $alias.Column $col.Name -}}
 			{{- if eq $col.Name "created_at" -}}

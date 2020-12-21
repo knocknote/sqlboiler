@@ -67,7 +67,13 @@ func (o *{{$alias.UpSingular}}) Delete({{if .NoContext}}exec boil.Executor{{else
 		args = queries.ValuesFromMapping(reflect.Indirect(reflect.ValueOf(o)), {{$alias.DownSingular}}PrimaryKeyMapping)
 		sql = "DELETE FROM {{$schemaTable}} WHERE {{if .Dialect.UseIndexPlaceholders}}{{whereClause .LQ .RQ 1 .Table.PKey.Columns}}{{else}}{{whereClause .LQ .RQ 0 .Table.PKey.Columns}}{{end}}"
 	} else {
-		currTime := time.Now().In(boil.GetLocation())
+		requestTime := ctx.Value("request_time").(*time.Time)
+        var currTime time.Time
+        if requestTime != nil {
+            currTime = *requestTime
+        } else {
+            currTime = time.Now().In(boil.GetLocation())
+        }
 		o.DeletedAt = null.TimeFrom(currTime)
 		wl := []string{"deleted_at"}
 		sql = fmt.Sprintf("UPDATE {{$schemaTable}} SET %s WHERE {{if .Dialect.UseIndexPlaceholders}}{{whereClause .LQ .RQ 2 .Table.PKey.Columns}}{{else}}{{whereClause .LQ .RQ 0 .Table.PKey.Columns}}{{end}}",
@@ -163,7 +169,13 @@ func (q {{$alias.DownSingular}}Query) DeleteAll({{if .NoContext}}exec boil.Execu
 	if hardDelete {
 		queries.SetDelete(q.Query)
 	} else {
-		currTime := time.Now().In(boil.GetLocation())
+		requestTime := ctx.Value("request_time").(*time.Time)
+        var currTime time.Time
+        if requestTime != nil {
+            currTime = *requestTime
+        } else {
+            currTime = time.Now().In(boil.GetLocation())
+        }
 		queries.SetUpdate(q.Query, M{"deleted_at": currTime})
 	}
 	{{else -}}
@@ -265,7 +277,13 @@ func (o {{$alias.UpSingular}}Slice) DeleteAll({{if .NoContext}}exec boil.Executo
 		sql = "DELETE FROM {{$schemaTable}} WHERE " +
 			strmangle.WhereClauseRepeated(string(dialect.LQ), string(dialect.RQ), {{if .Dialect.UseIndexPlaceholders}}1{{else}}0{{end}}, {{$alias.DownSingular}}PrimaryKeyColumns, len(o))
 	} else {
-		currTime := time.Now().In(boil.GetLocation())
+		requestTime := ctx.Value("request_time").(*time.Time)
+        var currTime time.Time
+        if requestTime != nil {
+            currTime = *requestTime
+        } else {
+            currTime = time.Now().In(boil.GetLocation())
+        }
 		for _, obj := range o {
 			pkeyArgs := queries.ValuesFromMapping(reflect.Indirect(reflect.ValueOf(obj)), {{$alias.DownSingular}}PrimaryKeyMapping)
 			args = append(args, pkeyArgs...)
